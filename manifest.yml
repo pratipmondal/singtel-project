@@ -1,0 +1,10 @@
+---
+instances: 1
+memory: 1G
+host: cap-cls-collateral-service
+buildpack: java-buildpack-offline-dbscerts
+applications:
+  - name: cap-cls-collateral-service
+    services:
+      - cls-configuration-server
+    timeout: 180
