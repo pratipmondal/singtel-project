@@ -22,12 +22,10 @@ import static org.junit.Assert.assertEquals;
 
 public class CountingTest extends AbstractTest {
 
-    CountAnimals countAnimals;
     Parent vertebrates[] ;
 
     @Before
     public  void setUp(){
-        this.countAnimals=new CountAnimals();
         vertebrates = new Parent[]{
                 new Bird(),
                 new Duck(),
@@ -47,25 +45,25 @@ public class CountingTest extends AbstractTest {
 
     @Test
     public void testWalkableCount(){
-        int count= this.countAnimals.walkableCount(vertebrates);
+        int count= CountAnimals.walkableCount(vertebrates);
         assertEquals(8,count);
     }
 
     @Test
     public void testFlyableCount(){
-        int count= this.countAnimals.flyableCount(vertebrates);
+        int count= CountAnimals.flyableCount(vertebrates);
         assertEquals(5,count);
     }
 
     @Test
     public void testSingableCount(){
-        int count= this.countAnimals.singableCount(vertebrates);
+        int count= CountAnimals.singableCount(vertebrates);
         assertEquals(8,count);
     }
 
     @Test
     public void testSwimmableCount(){
-        int count= this.countAnimals.swimmableCount(vertebrates);
+        int count= CountAnimals.swimmableCount(vertebrates);
         assertEquals(5,count);
     }
 }
