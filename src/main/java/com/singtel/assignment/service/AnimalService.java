@@ -27,58 +27,86 @@ public class AnimalService {
         return 0;
     }
 
-    private Parent[] populateAnimals(String animals) {
-        String[] animalArray = animals.split(",");
-        Parent[] vertebrates = new Parent[animalArray.length];
-        for(int i = 0; i < animalArray.length; i++){
-            switch(AnimalType.valueOf(animalArray[i].toUpperCase())) {
-                case BUTTERFLY:
-                    vertebrates[i] = new Butterfly();
-                    break;
-                case CAT:
-                    vertebrates[i] = new Cat();
-                    break;
-                case CATERPILLAR:
-                    vertebrates[i] = new Caterpillar();
-                    break;
-                case DOG:
-                    vertebrates[i] = new Dog();
-                    break;
-                case FROG:
-                    vertebrates[i] = new Frog();
-                    break;
-                case CHICKEN:
-                    vertebrates[i] = new Chicken();
-                    break;
-                case DUCK:
-                    vertebrates[i] = new Duck();
-                    break;
-                case PARROT:
-                    vertebrates[i] = new Parrot();
-                    break;
-                case ROOSTER:
-                    vertebrates[i] = new Rooster();
-                    break;
-                case CLOWNFISH:
-                    vertebrates[i] = new Clownfish();
-                    break;
-                case DOLPHIN:
-                    vertebrates[i] = new Dolphin();
-                    break;
-                case SHARK:
-                    vertebrates[i] = new Shark();
-                    break;
-                case BIRD:
-                    vertebrates[i] = new Bird();
-                    break;
-                case FISH:
-                    vertebrates[i] = new Fish();
-                    break;
-                default:
-                    break;
-            }
+    public int getAnimalFlyableCount(String animals){
+        if(StringUtils.isNotEmpty(animals) && animals.contains(",")){
+            Parent[] vertebrates = populateAnimals(animals);
+            return CountAnimals.flyableCount(vertebrates);
         }
-        return vertebrates;
+        return 0;
+    }
+
+    public int getAnimalSingableCount(String animals){
+        if(StringUtils.isNotEmpty(animals) && animals.contains(",")){
+            Parent[] vertebrates = populateAnimals(animals);
+            return CountAnimals.singableCount(vertebrates);
+        }
+        return 0;
+    }
+
+    public int getAnimalSwimmableCount(String animals){
+        if(StringUtils.isNotEmpty(animals) && animals.contains(",")){
+            Parent[] vertebrates = populateAnimals(animals);
+            return CountAnimals.swimmableCount(vertebrates);
+        }
+        return 0;
+    }
+
+    private Parent[] populateAnimals(String animals) {
+        try {
+            String[] animalArray = animals.split(",");
+            Parent[] vertebrates = new Parent[animalArray.length];
+            for (int i = 0; i < animalArray.length; i++) {
+                switch (AnimalType.valueOf(animalArray[i].toUpperCase())) {
+                    case BUTTERFLY:
+                        vertebrates[i] = new Butterfly();
+                        break;
+                    case CAT:
+                        vertebrates[i] = new Cat();
+                        break;
+                    case CATERPILLAR:
+                        vertebrates[i] = new Caterpillar();
+                        break;
+                    case DOG:
+                        vertebrates[i] = new Dog();
+                        break;
+                    case FROG:
+                        vertebrates[i] = new Frog();
+                        break;
+                    case CHICKEN:
+                        vertebrates[i] = new Chicken();
+                        break;
+                    case DUCK:
+                        vertebrates[i] = new Duck();
+                        break;
+                    case PARROT:
+                        vertebrates[i] = new Parrot();
+                        break;
+                    case ROOSTER:
+                        vertebrates[i] = new Rooster();
+                        break;
+                    case CLOWNFISH:
+                        vertebrates[i] = new Clownfish();
+                        break;
+                    case DOLPHIN:
+                        vertebrates[i] = new Dolphin();
+                        break;
+                    case SHARK:
+                        vertebrates[i] = new Shark();
+                        break;
+                    case BIRD:
+                        vertebrates[i] = new Bird();
+                        break;
+                    case FISH:
+                        vertebrates[i] = new Fish();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return vertebrates;
+        }catch(IllegalArgumentException exp){
+            throw exp;
+        }
     }
 
 }
